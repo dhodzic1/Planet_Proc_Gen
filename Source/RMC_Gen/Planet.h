@@ -24,10 +24,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+private:
 	UPROPERTY(EditAnywhere, Category = "Planet")
-	int Resolution;
+	int resolution;
 	UPROPERTY(EditAnywhere, Category = "Planet")
-	int Scale;
-
-	void GeneratePlanet();
+	int scale;
 };

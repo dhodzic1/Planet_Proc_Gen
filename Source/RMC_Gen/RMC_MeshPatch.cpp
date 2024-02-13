@@ -14,22 +14,28 @@ ARMC_MeshPatch::ARMC_MeshPatch()
 {
 }
 
-void ARMC_MeshPatch::InitializeMesh(int res, int scale, FVector3f localUp)
+void ARMC_MeshPatch::InitializeMeshDirection(FVector3f localUp)
 {
-	Resolution = res;
-	Scale = scale;
-
 	LocalUp = localUp;
 	AxisA = FVector3f(LocalUp.Y, LocalUp.Z, LocalUp.X);
 	AxisB = FVector3f::CrossProduct(LocalUp, AxisA);
 }
 
+int ARMC_MeshPatch::GetResolution() { return Resolution; }
+void ARMC_MeshPatch::SetResolution(int res) { Resolution = res; }
+int ARMC_MeshPatch::GetScale() { return Scale; }
+void ARMC_MeshPatch::SetScale(int scale) { Scale = scale; }
+
 // Called when the game starts or when spawned
 void ARMC_MeshPatch::BeginPlay()
 {
 	Super::BeginPlay();
+	GenerateCubeSphere();
+}
 
-	TArray<FVector3f> Directions = {
+void ARMC_MeshPatch::GenerateCubeSphere()
+{
+	TArray<FVector3f> Faces = {
 		FVector3f::UpVector,
 		FVector3f::DownVector,
 		FVector3f::LeftVector,
@@ -39,7 +45,7 @@ void ARMC_MeshPatch::BeginPlay()
 	};
 
 	for (int i = 0; i < 6; i++) {
-		InitializeMesh(100, 10000, Directions[i]);
+		InitializeMeshDirection(Faces[i]);
 		CreateMesh();
 	}
 }
@@ -103,11 +109,12 @@ void ARMC_MeshPatch::CreateMesh()
 	Builder.EnablePolyGroups();
 
 
-	// I'm sure there's a way to work around this and just dump the existing TArrays in, I just don't know what it would be.
+	// Add Vertices to builder
 	for (int i = 0; i < Vertices.Num(); i++)
 	{
 		Builder.AddVertex(Vertices[i]).SetNormalAndTangent(Normals[i], Tangents[i]).SetTexCoords(UV[i]);
 	}
+	// Add Triangles to buillder
 	for (int t = 0; t < Triangles.Num(); t += 3)
 	{
 		Builder.AddTriangle(Triangles[t], Triangles[t + 1], Triangles[t + 2], 0);
