@@ -5,7 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "RealtimeMeshActor.h"
+#include "RMC_MeshPatch.h"
 #include "Planet.generated.h"
+
 
 UCLASS()
 class RMC_GEN_API APlanet : public ARealtimeMeshActor
@@ -15,6 +17,8 @@ class RMC_GEN_API APlanet : public ARealtimeMeshActor
 public:	
 	// Sets default values for this actor's properties
 	APlanet();
+	virtual void OnGenerateMesh_Implementation() override;
+	ARMC_MeshPatch* Planet;
 
 protected:
 	// Called when the game starts or when spawned

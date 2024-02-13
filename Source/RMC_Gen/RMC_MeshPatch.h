@@ -16,6 +16,7 @@ class RMC_GEN_API ARMC_MeshPatch : public ARealtimeMeshActor
 public:	
 	// Sets default values for this actor's properties
 	ARMC_MeshPatch();
+	virtual void OnGenerateMesh_Implementation() override;
 	friend class APlanet;
 
 protected:

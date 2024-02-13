@@ -3,15 +3,19 @@
 #include "RMC_MeshPatch.h"
 
 #include "RealtimeMeshSimple.h"
-#include "RealtimeMeshLibrary.h"
-
 #include <Mesh/RealtimeMeshBuilder.h>
-#include <Mesh/RealtimeMeshBasicShapeTools.h>
-#include <Mesh/RealtimeMeshSimpleData.h>
 
 // Sets default values
 ARMC_MeshPatch::ARMC_MeshPatch()
 {
+	Resolution = 100;
+	Scale = 100;
+}
+
+void ARMC_MeshPatch::OnGenerateMesh_Implementation()
+{
+	Super::OnGenerateMesh_Implementation();
+	GenerateCubeSphere();
 }
 
 void ARMC_MeshPatch::InitializeMeshDirection(FVector3f localUp)
@@ -30,7 +34,6 @@ void ARMC_MeshPatch::SetScale(int scale) { Scale = scale; }
 void ARMC_MeshPatch::BeginPlay()
 {
 	Super::BeginPlay();
-	GenerateCubeSphere();
 }
 
 void ARMC_MeshPatch::GenerateCubeSphere()
@@ -79,11 +82,6 @@ void ARMC_MeshPatch::CreateMesh()
 			}
 		}
 	}
-
-	// debug
-	/*for (auto& v : Vertices) {
-		DrawDebugSphere(GetWorld(), FVector(v.X, v.Y, v.Z), 5.0f, 16, FColor::White, true, -1.0f, 0U, 0.0f);
-	}*/
 
 	Tangents.SetNum(Vertices.Num());
 	Normals.SetNum(Vertices.Num());
