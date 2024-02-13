@@ -1,0 +1,11 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\daria\\OneDrive\\Documents\\Unreal Projects\\RMC_Gen\\Source\\RMC_Gen\\RMC_Gen.Build.cs",
+		"C:\\Users\\daria\\OneDrive\\Documents\\Unreal Projects\\RMC_Gen\\Plugins\\RealtimeMeshComponent\\Source\\RealtimeMeshComponent\\RealtimeMeshComponent.Build.cs",
+		"C:\\Users\\daria\\OneDrive\\Documents\\Unreal Projects\\RMC_Gen\\Plugins\\RealtimeMeshComponent\\Source\\RealtimeMeshEditor\\RealtimeMeshEditor.Build.cs",
+		"C:\\Users\\daria\\OneDrive\\Documents\\Unreal Projects\\RMC_Gen\\Plugins\\RealtimeMeshComponent\\Source\\RealtimeMeshTests\\RealtimeMeshTests.Build.cs",
+		"C:\\Users\\daria\\OneDrive\\Documents\\Unreal Projects\\RMC_Gen\\Source\\RMC_Gen.Target.cs",
+		"C:\\Users\\daria\\OneDrive\\Documents\\Unreal Projects\\RMC_Gen\\Source\\RMC_GenEditor.Target.cs"
+	],
+	"EngineVersion": "5.3.2"
+}

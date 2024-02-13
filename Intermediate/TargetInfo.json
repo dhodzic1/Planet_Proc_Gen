@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "RMC_Gen",
+			"Path": "..\\Source\\RMC_Gen.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "RMC_GenEditor",
+			"Path": "..\\Source\\RMC_GenEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
