@@ -4,18 +4,13 @@
 
 #include "RealtimeMeshSimple.h"
 #include <Mesh/RealtimeMeshBuilder.h>
+#include <Math/UnrealMathUtility.h>
 
 // Sets default values
 ARMC_MeshPatch::ARMC_MeshPatch()
 {
 	Resolution = 100;
-	Scale = 100;
-}
-
-void ARMC_MeshPatch::OnGenerateMesh_Implementation()
-{
-	Super::OnGenerateMesh_Implementation();
-	GenerateCubeSphere();
+	Scale = 100.0f;
 }
 
 void ARMC_MeshPatch::InitializeMeshDirection(FVector3f localUp)
@@ -27,8 +22,8 @@ void ARMC_MeshPatch::InitializeMeshDirection(FVector3f localUp)
 
 int ARMC_MeshPatch::GetResolution() { return Resolution; }
 void ARMC_MeshPatch::SetResolution(int res) { Resolution = res; }
-int ARMC_MeshPatch::GetScale() { return Scale; }
-void ARMC_MeshPatch::SetScale(int scale) { Scale = scale; }
+float ARMC_MeshPatch::GetScale() { return Scale; }
+void ARMC_MeshPatch::SetScale(float scale) { Scale = scale; }
 
 // Called when the game starts or when spawned
 void ARMC_MeshPatch::BeginPlay()
@@ -38,6 +33,12 @@ void ARMC_MeshPatch::BeginPlay()
 
 void ARMC_MeshPatch::GenerateCubeSphere()
 {
+	Vertices.Empty();
+	UV.Empty();
+	Triangles.Empty();
+	Tangents.Empty();
+	Normals.Empty();
+
 	TArray<FVector3f> Faces = {
 		FVector3f::UpVector,
 		FVector3f::DownVector,
@@ -48,14 +49,13 @@ void ARMC_MeshPatch::GenerateCubeSphere()
 	};
 
 	for (int i = 0; i < 6; i++) {
-		InitializeMeshDirection(Faces[i]);
-		CreateMesh();
+		this->InitializeMeshDirection(Faces[i]);
+		this->CreateMesh();
 	}
 }
 
 void ARMC_MeshPatch::CreateMesh()
 {
-
 	float CellSize = 10;
 
 	for (int y = 0; y <= Resolution; y++)
@@ -98,7 +98,7 @@ void ARMC_MeshPatch::CreateMesh()
 		true);
 
 	URealtimeMeshSimple* Mesh = GetRealtimeMeshComponent()->InitializeRealtimeMesh<URealtimeMeshSimple>();
-
+	
 	FRealtimeMeshStreamSet StreamSet;
 	TRealtimeMeshBuilderLocal Builder(StreamSet);
 	Builder.EnableColors();

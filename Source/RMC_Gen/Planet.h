@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "RealtimeMeshActor.h"
-#include "RMC_MeshPatch.h"
 #include "Planet.generated.h"
 
 
@@ -18,7 +17,9 @@ public:
 	// Sets default values for this actor's properties
 	APlanet();
 	virtual void OnGenerateMesh_Implementation() override;
-	ARMC_MeshPatch* Planet;
+
+	UPROPERTY(VisibleAnywhere)
+	UChildActorComponent* ChildActorComponent;
 
 protected:
 	// Called when the game starts or when spawned
@@ -30,7 +31,7 @@ public:
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Planet")
-	int resolution;
+	int Resolution;
 	UPROPERTY(EditAnywhere, Category = "Planet")
-	int scale;
+	float Scale;
 };

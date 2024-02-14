@@ -16,8 +16,13 @@ class RMC_GEN_API ARMC_MeshPatch : public ARealtimeMeshActor
 public:	
 	// Sets default values for this actor's properties
 	ARMC_MeshPatch();
-	virtual void OnGenerateMesh_Implementation() override;
-	friend class APlanet;
+
+	int GetResolution();
+	float GetScale();
+
+	void SetResolution(int res);
+	void SetScale(float scale);
+	void GenerateCubeSphere();
 
 protected:
 	// Called when the game starts or when spawned
@@ -25,21 +30,10 @@ protected:
 
 	void InitializeMeshDirection(FVector3f localUp);
 	void CreateMesh();
-	void GenerateCubeSphere();
-	void SetResolution(int res);
-	void SetScale(int scale);
-
-	int GetResolution();
-	int GetScale();
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(EditAnywhere, Category = "Planet")
-	int Resolution;
-	UPROPERTY(EditAnywhere, Category = "Planet")
-	int Scale;
 
 private:
 
@@ -52,4 +46,9 @@ private:
 	FVector3f LocalUp;
 	FVector3f AxisA;
 	FVector3f AxisB;
+
+	UPROPERTY(EditAnywhere, Category = "Planet")
+	int Resolution;
+	UPROPERTY(EditAnywhere, Category = "Planet")
+	float Scale;
 };

@@ -35,7 +35,7 @@ void EmptyLinkFunctionForGeneratedCodeRMC_MeshPatch() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Scale_MetaData[];
 #endif
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Scale;
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_Scale;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -57,14 +57,14 @@ void EmptyLinkFunctionForGeneratedCodeRMC_MeshPatch() {}
 		{ "ModuleRelativePath", "RMC_MeshPatch.h" },
 	};
 #endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Resolution = { "Resolution", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARMC_MeshPatch, Resolution), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Resolution_MetaData), Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Resolution_MetaData) };
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Resolution = { "Resolution", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARMC_MeshPatch, Resolution), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Resolution_MetaData), Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Resolution_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Scale_MetaData[] = {
 		{ "Category", "Planet" },
 		{ "ModuleRelativePath", "RMC_MeshPatch.h" },
 	};
 #endif
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Scale = { "Scale", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARMC_MeshPatch, Scale), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Scale_MetaData), Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Scale_MetaData) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Scale = { "Scale", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARMC_MeshPatch, Scale), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Scale_MetaData), Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Scale_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ARMC_MeshPatch_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Resolution,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ARMC_MeshPatch_Statics::NewProp_Scale,
@@ -107,9 +107,9 @@ void EmptyLinkFunctionForGeneratedCodeRMC_MeshPatch() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_RMC_MeshPatch_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ARMC_MeshPatch, ARMC_MeshPatch::StaticClass, TEXT("ARMC_MeshPatch"), &Z_Registration_Info_UClass_ARMC_MeshPatch, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARMC_MeshPatch), 3889031978U) },
+		{ Z_Construct_UClass_ARMC_MeshPatch, ARMC_MeshPatch::StaticClass, TEXT("ARMC_MeshPatch"), &Z_Registration_Info_UClass_ARMC_MeshPatch, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ARMC_MeshPatch), 3444968757U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_RMC_MeshPatch_h_2048429029(TEXT("/Script/RMC_Gen"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_RMC_MeshPatch_h_1042260958(TEXT("/Script/RMC_Gen"),
 		Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_RMC_MeshPatch_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_RMC_MeshPatch_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

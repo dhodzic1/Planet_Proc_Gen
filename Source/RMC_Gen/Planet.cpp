@@ -8,17 +8,24 @@ APlanet::APlanet()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+	ChildActorComponent = CreateDefaultSubobject<UChildActorComponent>(TEXT("ChildActorComponent"));
+	ChildActorComponent->SetChildActorClass(ARMC_MeshPatch::StaticClass());
+	ChildActorComponent->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepWorldTransform);
 
-	// Create a new ARMC_MeshPatch as a component of APlanet
-	Planet = CreateDefaultSubobject<ARMC_MeshPatch>(TEXT("PlanetMesh"));
-	// Attach the Planet component to the RootComponent
-    Planet->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	Resolution = 100;
+	Scale = 100.0f;
 }
 
 void APlanet::OnGenerateMesh_Implementation()
 {
 	Super::OnGenerateMesh_Implementation();
-	Planet = GetWorld()->SpawnActor<ARMC_MeshPatch>(ARMC_MeshPatch::StaticClass());
+	auto ChildActor = ChildActorComponent->GetChildActor();
+	ARMC_MeshPatch* MeshPatch = Cast<ARMC_MeshPatch>(ChildActor);
+	if (MeshPatch != nullptr) {
+		MeshPatch->SetResolution(Resolution);
+		MeshPatch->SetScale(Scale);
+		MeshPatch->GenerateCubeSphere();
+	}
 }
 
 // Called when the game starts or when spawned
