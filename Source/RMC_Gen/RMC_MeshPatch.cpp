@@ -112,7 +112,7 @@ void ARMC_MeshPatch::CreateMesh()
 	{
 		Builder.AddVertex(Vertices[i]).SetNormalAndTangent(Normals[i], Tangents[i]).SetTexCoords(UV[i]);
 	}
-	// Add Triangles to buillder
+	// Add Triangles to builder
 	for (int t = 0; t < Triangles.Num(); t += 3)
 	{
 		Builder.AddTriangle(Triangles[t], Triangles[t + 1], Triangles[t + 2], 0);
