@@ -25,28 +25,16 @@ void ARMC_MeshPatch::SetResolution(int res) { Resolution = res; }
 float ARMC_MeshPatch::GetScale() { return Scale; }
 void ARMC_MeshPatch::SetScale(float scale) { Scale = scale; }
 
-// Called when the game starts or when spawned
-void ARMC_MeshPatch::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
+// Initializes each mesh face with a local direction vector and renders it. 
+// Note: Vertices are normalized within CreateMesh() to transform cube into sphere
 void ARMC_MeshPatch::GenerateCubeSphere()
 {
+	// Clear TArrays on update of generated mesh
 	Vertices.Empty();
 	UV.Empty();
 	Triangles.Empty();
 	Tangents.Empty();
 	Normals.Empty();
-
-	TArray<FVector3f> Faces = {
-		FVector3f::UpVector,
-		FVector3f::DownVector,
-		FVector3f::LeftVector,
-		FVector3f::RightVector,
-		FVector3f::ForwardVector,
-		FVector3f::BackwardVector
-	};
 
 	for (int i = 0; i < 6; i++) {
 		this->InitializeMeshDirection(Faces[i]);
@@ -54,24 +42,22 @@ void ARMC_MeshPatch::GenerateCubeSphere()
 	}
 }
 
+// Draws tessellated mesh face based on a set resolution and scale
 void ARMC_MeshPatch::CreateMesh()
 {
 	float CellSize = 10;
 
-	for (int y = 0; y <= Resolution; y++)
-	{
-		for (int x = 0; x <= Resolution; x++)
-		{
+	for (int y = 0; y <= Resolution; y++) {
+		for (int x = 0; x <= Resolution; x++) {
 			FVector2f Percent = FVector2f(x, y) / Resolution; // percentage of x and y we've completed in loop (range: 0, 1)
 			FVector3f vert = LocalUp + (Percent.X - 0.5f) * 2 * AxisA + (Percent.Y - 0.5f) * 2 * AxisB;
-			vert.Normalize();
+			vert.Normalize(); // Normalize vertices to be same distance from center (0, 0, 0)
 			int vertIndex = Vertices.Num();
 			Vertices.Add(vert * Scale);
 			UV.Add(FVector2f(static_cast<float>(x) / CellSize, static_cast<float>(y) / CellSize));
 
-			// If we're not on the last row or column, add a quad (two triangles)
-			if (x < Resolution && y < Resolution)
-			{
+			// If we're not on the last row or column, draw triangles
+			if (x < Resolution && y < Resolution) {
 				Triangles.Add(vertIndex);
 				Triangles.Add(vertIndex + Resolution+ 1);
 				Triangles.Add(vertIndex + 1);
@@ -86,8 +72,8 @@ void ARMC_MeshPatch::CreateMesh()
 	Tangents.SetNum(Vertices.Num());
 	Normals.SetNum(Vertices.Num());
 
-	GEngine->AddOnScreenDebugMessage(1, 2, FColor::Green, TEXT("Generating Tangents..."));
-
+	// RMC built in function which generates normals and tangents for mesh face. 
+	// Params are Tri and Vert TArrays and lambda functions for getting UV coord and setting Tangent/Normal TArrays.
 	RealtimeMeshAlgo::GenerateTangents(TConstArrayView<uint32>(Triangles), TConstArrayView<FVector3f>(Vertices),
 		[&](const int Index) { return UV[Index]; },
 		[&](const int Index, const FVector3f Tangent, const FVector3f Normal)
@@ -95,8 +81,9 @@ void ARMC_MeshPatch::CreateMesh()
 			Tangents[Index] = Tangent;
 			Normals[Index] = Normal;
 		},
-		true);
+		true); // Final param set to true for computing smooth normals (to avoid jarring lighting with cubesphere seams)
 
+	// Initialize RealtimeMesh, StreamSet, and Builder
 	URealtimeMeshSimple* Mesh = GetRealtimeMeshComponent()->InitializeRealtimeMesh<URealtimeMeshSimple>();
 	
 	FRealtimeMeshStreamSet StreamSet;
@@ -104,17 +91,15 @@ void ARMC_MeshPatch::CreateMesh()
 	Builder.EnableColors();
 	Builder.EnableTangents();
 	Builder.EnableTexCoords();
-	Builder.EnablePolyGroups();
+	Builder.EnablePolyGroups(); // must enable polygroups or mesh may not render
 
 
 	// Add Vertices to builder
-	for (int i = 0; i < Vertices.Num(); i++)
-	{
+	for (int i = 0; i < Vertices.Num(); i++) {
 		Builder.AddVertex(Vertices[i]).SetNormalAndTangent(Normals[i], Tangents[i]).SetTexCoords(UV[i]);
 	}
-	// Add Triangles to builder
-	for (int t = 0; t < Triangles.Num(); t += 3)
-	{
+	// Add Triangles to builder (Counter-Clockwise winding order)
+	for (int t = 0; t < Triangles.Num(); t += 3) {
 		Builder.AddTriangle(Triangles[t], Triangles[t + 1], Triangles[t + 2], 0);
 	}
 
@@ -124,10 +109,4 @@ void ARMC_MeshPatch::CreateMesh()
 
 	Mesh->CreateSectionGroup(SecGrpKey, StreamSet);
 	Mesh->UpdateSectionConfig(FRealtimeMeshSectionKey::CreateForPolyGroup(SecGrpKey, 0), SectionConfig, true);
-}
-
-// Called every frame
-void ARMC_MeshPatch::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
 }

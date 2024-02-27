@@ -24,18 +24,21 @@ public:
 	void SetScale(float scale);
 	void GenerateCubeSphere();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
+	// Acts as parameterized constructor
 	void InitializeMeshDirection(FVector3f localUp);
 	void CreateMesh();
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 private:
+
+	// Vectors corresponding to each face of cube
+	const TArray<FVector3f> Faces = {
+		FVector3f::UpVector,
+		FVector3f::DownVector,
+		FVector3f::LeftVector,
+		FVector3f::RightVector,
+		FVector3f::ForwardVector,
+		FVector3f::BackwardVector
+	};
 
 	TArray<FVector3f> Vertices;
 	TArray<uint32> Triangles;
