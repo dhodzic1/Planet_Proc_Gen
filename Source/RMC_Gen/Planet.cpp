@@ -29,7 +29,7 @@ void APlanet::OnGenerateMesh_Implementation()
 		MeshPatch->SetLacunarity(Lacunarity);
 		MeshPatch->SetGain(Gain);
 
-		MeshPatch->GenerateCubeSphere();
+		MeshPatch->GeneratePlanet();
 	}
 }
 

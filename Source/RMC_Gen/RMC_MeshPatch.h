@@ -26,11 +26,13 @@ public:
 	void SetLacunarity(float l);
 	void SetGain(float g);
 
-	void GenerateCubeSphere();
+	void GeneratePlanet();
+	void GenerateNoise();
+	void RenderMesh();
 
 	// Acts as parameterized constructor
 	void InitializeMeshDirection(FVector3f localUp);
-	void CreateMesh();
+	void ComputeMeshData();
 
 private:
 

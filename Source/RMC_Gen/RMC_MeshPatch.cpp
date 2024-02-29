@@ -33,7 +33,7 @@ void ARMC_MeshPatch::SetGain(float g) { Gain = g; }
 
 // Initializes each mesh face with a local direction vector and renders it. 
 // Note: Vertices are normalized within CreateMesh() to transform cube into sphere
-void ARMC_MeshPatch::GenerateCubeSphere()
+void ARMC_MeshPatch::GeneratePlanet()
 {
 	// Clear TArrays on update of generated mesh
 	Vertices.Empty();
@@ -50,14 +50,18 @@ void ARMC_MeshPatch::GenerateCubeSphere()
 		EFastNoise_FractalType::FBM, 
 		Octaves, Lacunarity, Gain);
 
+	// Compute mesh data for all faces of cube-sphere
 	for (int i = 0; i < 6; i++) {
 		this->InitializeMeshDirection(Faces[i]);
-		this->CreateMesh();
+		this->ComputeMeshData();
 	}
+
+	this->GenerateNoise();
+	this->RenderMesh();
 }
 
 // Draws tessellated mesh face based on a set resolution and scale
-void ARMC_MeshPatch::CreateMesh()
+void ARMC_MeshPatch::ComputeMeshData()
 {
 	float CellSize = 10;
 
@@ -82,7 +86,26 @@ void ARMC_MeshPatch::CreateMesh()
 			}
 		}
 	}
+}
 
+// Generates Simplex Fractal noise on all of the computed vertices
+void ARMC_MeshPatch::GenerateNoise()
+{
+	// Add Simplex Noise to Vertices of Cube-Sphere
+	FVector3f SphereCenter = FVector3f(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z);
+	for (auto& Vertex : Vertices) {
+		float NoiseValue = fastNoiseWrapper->GetNoise3D(Vertex.X, Vertex.Y, Vertex.Z);
+
+		FVector3f SphereCenterToVertex = Vertex - SphereCenter;
+		SphereCenterToVertex.Normalize();
+		FVector3f NoiseVector = SphereCenterToVertex * NoiseValue;
+		Vertex += NoiseVector;
+	}
+}
+
+// Utilize RMC to render our mesh
+void ARMC_MeshPatch::RenderMesh()
+{
 	Tangents.SetNum(Vertices.Num());
 	Normals.SetNum(Vertices.Num());
 
@@ -99,7 +122,6 @@ void ARMC_MeshPatch::CreateMesh()
 
 	// Initialize RealtimeMesh, StreamSet, and Builder
 	Mesh = GetRealtimeMeshComponent()->InitializeRealtimeMesh<URealtimeMeshSimple>();
-	
 	FRealtimeMeshStreamSet StreamSet;
 	TRealtimeMeshBuilderLocal Builder(StreamSet);
 	Builder.EnableColors();
@@ -107,16 +129,6 @@ void ARMC_MeshPatch::CreateMesh()
 	Builder.EnableTexCoords();
 	Builder.EnablePolyGroups(); // must enable polygroups or mesh may not render
 
-	// Add Simplex Noise to Vertices of Cube-Sphere
-	FVector3f SphereCenter = FVector3f(this->GetActorLocation().X, this->GetActorLocation().Y, this->GetActorLocation().Z);
-	for (auto& Vertex : Vertices) {
-		float NoiseValue = fastNoiseWrapper->GetNoise3D(Vertex.X, Vertex.Y, Vertex.Z);
-		FVector3f SphereCenterToVertex = Vertex - SphereCenter;
-		SphereCenterToVertex.Normalize();
-		FVector3f NoiseVector = SphereCenterToVertex * NoiseValue;
-		Vertex += NoiseVector;
-	}
-	
 	// Add Vertices to builder
 	for (int i = 0; i < Vertices.Num(); i++) {
 		Builder.AddVertex(Vertices[i]).SetNormalAndTangent(Normals[i], Tangents[i]).SetTexCoords(UV[i]);
@@ -126,7 +138,7 @@ void ARMC_MeshPatch::CreateMesh()
 		Builder.AddTriangle(Triangles[t], Triangles[t + 1], Triangles[t + 2], 0);
 	}
 
-	const auto SecGrpKey = FRealtimeMeshSectionGroupKey::Create(0, FName("Patch"));
+	const auto SecGrpKey = FRealtimeMeshSectionGroupKey::Create(0, FName("Planet"));
 	auto SectionConfig = FRealtimeMeshSectionConfig(ERealtimeMeshSectionDrawType::Static, 0);
 	SectionConfig.bIsVisible = true;
 
