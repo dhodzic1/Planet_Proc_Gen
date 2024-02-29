@@ -41,6 +41,26 @@ void EmptyLinkFunctionForGeneratedCodePlanet() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Scale_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_Scale;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Seed_MetaData[];
+#endif
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Seed;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Octaves_MetaData[];
+#endif
+		static const UECodeGen_Private::FIntPropertyParams NewProp_Octaves;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Frequency_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_Frequency;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Lacunarity_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_Lacunarity;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Gain_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_Gain;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -78,10 +98,56 @@ void EmptyLinkFunctionForGeneratedCodePlanet() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanet_Statics::NewProp_Scale = { "Scale", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APlanet, Scale), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APlanet_Statics::NewProp_Scale_MetaData), Z_Construct_UClass_APlanet_Statics::NewProp_Scale_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanet_Statics::NewProp_Seed_MetaData[] = {
+		{ "Category", "Planet" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// Noise params\n" },
+#endif
+		{ "ModuleRelativePath", "Planet.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Noise params" },
+#endif
+	};
+#endif
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_APlanet_Statics::NewProp_Seed = { "Seed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APlanet, Seed), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APlanet_Statics::NewProp_Seed_MetaData), Z_Construct_UClass_APlanet_Statics::NewProp_Seed_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanet_Statics::NewProp_Octaves_MetaData[] = {
+		{ "Category", "Planet" },
+		{ "ModuleRelativePath", "Planet.h" },
+	};
+#endif
+	const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_APlanet_Statics::NewProp_Octaves = { "Octaves", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APlanet, Octaves), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APlanet_Statics::NewProp_Octaves_MetaData), Z_Construct_UClass_APlanet_Statics::NewProp_Octaves_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanet_Statics::NewProp_Frequency_MetaData[] = {
+		{ "Category", "Planet" },
+		{ "ModuleRelativePath", "Planet.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanet_Statics::NewProp_Frequency = { "Frequency", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APlanet, Frequency), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APlanet_Statics::NewProp_Frequency_MetaData), Z_Construct_UClass_APlanet_Statics::NewProp_Frequency_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanet_Statics::NewProp_Lacunarity_MetaData[] = {
+		{ "Category", "Planet" },
+		{ "ModuleRelativePath", "Planet.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanet_Statics::NewProp_Lacunarity = { "Lacunarity", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APlanet, Lacunarity), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APlanet_Statics::NewProp_Lacunarity_MetaData), Z_Construct_UClass_APlanet_Statics::NewProp_Lacunarity_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanet_Statics::NewProp_Gain_MetaData[] = {
+		{ "Category", "Planet" },
+		{ "ModuleRelativePath", "Planet.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanet_Statics::NewProp_Gain = { "Gain", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APlanet, Gain), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APlanet_Statics::NewProp_Gain_MetaData), Z_Construct_UClass_APlanet_Statics::NewProp_Gain_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APlanet_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanet_Statics::NewProp_ChildActorComponent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanet_Statics::NewProp_Resolution,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanet_Statics::NewProp_Scale,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanet_Statics::NewProp_Seed,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanet_Statics::NewProp_Octaves,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanet_Statics::NewProp_Frequency,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanet_Statics::NewProp_Lacunarity,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanet_Statics::NewProp_Gain,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_APlanet_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<APlanet>::IsAbstract,
@@ -121,9 +187,9 @@ void EmptyLinkFunctionForGeneratedCodePlanet() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_Planet_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_APlanet, APlanet::StaticClass, TEXT("APlanet"), &Z_Registration_Info_UClass_APlanet, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APlanet), 3290237149U) },
+		{ Z_Construct_UClass_APlanet, APlanet::StaticClass, TEXT("APlanet"), &Z_Registration_Info_UClass_APlanet, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APlanet), 1326201549U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_Planet_h_4171941563(TEXT("/Script/RMC_Gen"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_Planet_h_1604276739(TEXT("/Script/RMC_Gen"),
 		Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_Planet_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_daria_OneDrive_Documents_Unreal_Projects_RMC_Gen_Source_RMC_Gen_Planet_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -8,7 +8,7 @@ public class RMC_Gen : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" , "FastNoiseGenerator" , "FastNoise" });
         PublicDependencyModuleNames.Add("RealtimeMeshComponent");
         PrivateDependencyModuleNames.AddRange(new string[] {  });
 

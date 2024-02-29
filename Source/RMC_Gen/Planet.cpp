@@ -11,9 +11,6 @@ APlanet::APlanet()
 	ChildActorComponent = CreateDefaultSubobject<UChildActorComponent>(TEXT("ChildActorComponent"));
 	ChildActorComponent->SetChildActorClass(ARMC_MeshPatch::StaticClass());
 	ChildActorComponent->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepWorldTransform);
-
-	Resolution = 100;
-	Scale = 100.0f;
 }
 
 void APlanet::OnGenerateMesh_Implementation()
@@ -24,6 +21,14 @@ void APlanet::OnGenerateMesh_Implementation()
 	if (MeshPatch != nullptr) {
 		MeshPatch->SetResolution(Resolution);
 		MeshPatch->SetScale(Scale);
+
+		// Noise params
+		MeshPatch->SetSeed(Seed);
+		MeshPatch->SetOctaves(Octaves);
+		MeshPatch->SetFrequency(Frequency);
+		MeshPatch->SetLacunarity(Lacunarity);
+		MeshPatch->SetGain(Gain);
+
 		MeshPatch->GenerateCubeSphere();
 	}
 }
@@ -39,3 +44,4 @@ void APlanet::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
+

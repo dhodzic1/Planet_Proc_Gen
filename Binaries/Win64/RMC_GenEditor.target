@@ -2746,6 +2746,26 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/FastNoiseGenerator/Binaries/Win64/UnrealEditor-FastNoise.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/FastNoiseGenerator/Binaries/Win64/UnrealEditor-FastNoise.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/FastNoiseGenerator/Binaries/Win64/UnrealEditor-FastNoiseGenerator.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/FastNoiseGenerator/Binaries/Win64/UnrealEditor-FastNoiseGenerator.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/FastNoiseGenerator/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Media/AndroidMedia/Binaries/Win64/UnrealEditor-AndroidMediaEditor.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -24529,6 +24549,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Interchange/Runtime/Interchange.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/FastNoiseGenerator/FastNoiseGenerator.uplugin",
 			"Type": "UFS"
 		},
 		{

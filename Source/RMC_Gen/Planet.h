@@ -30,8 +30,21 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
+
 	UPROPERTY(EditAnywhere, Category = "Planet")
-	int Resolution;
+	int Resolution = 100;
 	UPROPERTY(EditAnywhere, Category = "Planet")
-	float Scale;
+	float Scale = 100;
+
+	// Noise params
+	UPROPERTY(EditAnywhere, Category = "Planet")
+	int32 Seed = 1337;
+	UPROPERTY(EditAnywhere, Category = "Planet")
+	int32 Octaves = 3;
+	UPROPERTY(EditAnywhere, Category = "Planet")
+	float Frequency = 0.01F;
+	UPROPERTY(EditAnywhere, Category = "Planet")
+	float Lacunarity = 2.5F;
+	UPROPERTY(EditAnywhere, Category = "Planet")
+	float Gain = 0.5F;
 };

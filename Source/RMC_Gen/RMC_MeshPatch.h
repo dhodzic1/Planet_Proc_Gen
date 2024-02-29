@@ -17,11 +17,15 @@ public:
 	// Sets default values for this actor's properties
 	ARMC_MeshPatch();
 
-	int GetResolution();
-	float GetScale();
-
 	void SetResolution(int res);
 	void SetScale(float scale);
+
+	void SetSeed(int32 s);
+	void SetOctaves(int32 o);
+	void SetFrequency(float f);
+	void SetLacunarity(float l);
+	void SetGain(float g);
+
 	void GenerateCubeSphere();
 
 	// Acts as parameterized constructor
@@ -50,8 +54,16 @@ private:
 	FVector3f AxisA;
 	FVector3f AxisB;
 
-	UPROPERTY(EditAnywhere, Category = "Planet")
+	class URealtimeMeshSimple* Mesh;
+	class UFastNoiseWrapper* fastNoiseWrapper;
+
 	int Resolution;
-	UPROPERTY(EditAnywhere, Category = "Planet")
 	float Scale;
+	
+	// Noise params
+	int32 Seed;
+	float Frequency;
+	int32 Octaves;
+	float Lacunarity;
+	float Gain;
 };
